@@ -1,0 +1,20 @@
+name: Build Push icarus vite react node 14
+on:
+  push:
+    branches:
+      - main
+jobs:
+  Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        name: Check out code
+
+      - uses: mr-smithers-excellent/docker-build-push@v5
+        name: Build & push Docker image
+        with:
+          image: codelrond/icarus-code-vite-react
+          tags: 14, latest
+          registry: docker.io
+          username: ${{ secrets.DOCKER_USER }}
+          password: ${{ secrets.DOCKER_PASSWORD }}
